@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: AvenirNext-DemiBold, Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #0033ff, #00c6ff);
+        }
+
+        .result {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+
+        .result:not(:last-child) {
+            border-bottom: none;
+        }
+
+        .search-results {
+            /*background: linear-gradient(to right, #FDD835, #F48FB1, #4FC3F7, #BA68C8, #FBC02D, #FF8A65);*/
+            backdrop-filter: blur(10px);
+            margin-top: 50px;
+            text-align: left;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card search-results">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4"><strong>Search Results</strong></h1>
+                    {% for result in results %}
+                    <div class="result">
+                        <h2><strong>{{ result.title }}</strong></h2>
+                        <p>{{ result.description }}</p>
+                        <p><strong>Gender:</strong> {{ result.gender }}</p>
+                        <p><strong>Category:</strong> {{ result.category }}</p>
+                        <p><strong>Sub-Category:</strong> {{ result.sub_category }}</p>
+                        <p><strong>MRP:</strong> Rs. {{ result.normal_price}}</p>
+                        <p><strong>Discounted Price:</strong> Rs. {{ result.selling_price }}</p>
+                        <p><strong>Link:</strong> <a href="{{ result.url }}">{{ result.url}}</a></p>
+                        <img src="{{ result.image_url }}" alt="{{ result.title }}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
